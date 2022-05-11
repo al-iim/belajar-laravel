@@ -1,0 +1,14 @@
+--- awal perlakuan ---
+git init (inisiasi awal pengaktifan git)
+git add . (memasukan semua folder dan file di project)
+git commit -m "Commit 1" ("Commit 1" namanya terserah)
+git remote add origin https://github.com/al-iim/belajar-laravel.git (buat dulu reponya lalu disesuaikan alamat repo nya)
+git push -u origin master (di dorong di cabang utama)
+--- perlakuan lanjutan ---
+git add . (memasukan folder dan file yang telah di buat / ubah)
+git commit -m "Commit 2" (Nama Commit 2,3,4 dst)
+git push -u origin master (masukan di cabang utama)
+
+--- list catatan komit dan fiturnya ---
+1. Commit 1 ~ Rabu, 11-05-2022,11:13 (Pertama commit, memasukan semua folder awal)
+2. Commit 2 ~ Rabu, 11-05-2022,11:25 (commit perubahan catatan dan uji coba saja)
