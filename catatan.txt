@@ -10,5 +10,5 @@ git commit -m "Commit 2" (Nama Commit 2,3,4 dst)
 git push -u origin master (masukan di cabang utama)
 
 --- list catatan komit dan fiturnya ---
-1. Commit 1 ~ Rabu, 11-05-2022,11:13 (Pertama commit, memasukan semua folder awal)
-2. Commit 2 ~ Rabu, 11-05-2022,11:25 (commit perubahan catatan dan uji coba saja)
+1. Commit 1 ~ Rabu, 11-05-2022,14:48 (Pertama commit, memasukan semua folder awal)
+2. Commit 2 ~  (setting environment)
