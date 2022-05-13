@@ -1,0 +1,7 @@
+1. Pertama Membuat Unit test (bisa di run di mana saja)
+    php artisan make:test NamaTestNya (unit test terintegrasi laravel, masuk di menu Feature)
+    php artisan make:test NamaTesManualNya --unit (unit test nya manual masuk di menu Unit)
+2. Kedua Cara Menjalankan test nya (bisa di run di mana saja)
+    php artisan test (akan menjalankan seluruh test yang ada)
+3. Menjalankan test dari terminal Bash (khusus linux dan bash)
+    vendor/bin/phpunit test/feature/EnvironmenTest.php
