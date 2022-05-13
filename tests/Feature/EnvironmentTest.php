@@ -10,7 +10,7 @@ use Tests\TestCase;
 class EnvironmentTest extends TestCase
 {
     public function testGetEnv(){
-        $belajar = env('BELAJAR');
+        $belajar = env('BELAJAR', 'Programmer Zaman Now');
         self::assertEquals('Programmer Zaman Now', $belajar);
     }
     public function testDefaultEnv(){
