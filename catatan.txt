@@ -10,6 +10,21 @@ git commit -m "Commit 2" (Nama Commit 2,3,4 dst)
 git push -u origin master (masukan di cabang utama)
 
 --- list catatan komit dan fiturnya ---
-1. Commit 1 ~ Rabu, 11-05-2022,14:48 (Pertama commit, memasukan semua folder awal)
-2. Commit 2 ~ Jumat, 13-052022,09.35 (unit testing, pembuatannya dan cara menjalankannya)
-3. Commit 3 ~ (config-configuration, config-cahce/biar cepet aplikasinya -> penting)
+1. Commit 1 ~ Rabu, 11-05-2022,14:48 (Pertama commit, memasukan semua folder awal) php spark serve
+2. Commit 2 ~ Jumat, 13-05-2022,09.35 (unit testing, pembuatannya dan cara menjalankannya)
+    -php artisan make:test ContohTest (membuat file test di folder tests->Feature->ContohTest.php)
+    -php artisan test (uji coba)
+    -Environment https://github.com/vulcas/phpdotenv
+    -kita bisa menambahkan/push environment via gitbash 
+    -export NAMAENVNYA="Programmer Zaman Now" (Hanya bisa dengan gitbash)
+    -vendor/bin/phpuniy test/Feature/ENvironmentTest.php
+    -use Illuminate\Support\Env;
+    -use Illuminate\Support\Facades\App;
+    -environment tahapan (local/testing->dev->staging->qa->prod)
+3. Commit 3 ~ Sabtu, 14-05-2022(config-configuration, config-cahce/biar cepet aplikasinya -> penting)
+    -buat contohConfig.php
+    -buat cache config agar cepat aplikasinya
+    -php artisan config:cahce (otomatis cache nya akan di merge jadi satu, lokasinya di bootstrap->cache->config.php)
+    -php artisan config:clear (untuk menghapus cache)
+4. Commit 4 ~ (Dependency Injection)
+    -https://en.wikipedia.org/wiki/Dependency_injection

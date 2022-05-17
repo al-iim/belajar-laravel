@@ -21,9 +21,10 @@ class AppEnvironmentTest extends TestCase
     }
     // mengecek pembenaran status env
     public function testAppEnvTrueMulti(){
-        if(App::environment('testing','prod','dev')){
+        if(App::environment('testing','local','dev','prod')){
             // kode program kita di sini
             self::assertTrue(true);
+            // jika salah akan muncul kode This test did not perform any assertions  D:\xampp\xampp_8120\htdocs\belajar-laravel\tests\Feature\AppEnvironmentTest.php:23
         }
     }
 }
