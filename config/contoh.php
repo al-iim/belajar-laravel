@@ -1,4 +1,17 @@
 <?php
+
+/*
+|--------------------------------------------------------------------------
+| Latihan Configuration
+|--------------------------------------------------------------------------
+| Environment variable cocok digunakan untuk jenis konfigurasi yang memang butuh berubah-ubah nilainya,
+| dan terintegrasi dengan baik dengan environment variable di sistem operasi Laravel juga
+| mendukung penulisan konfigurasi dengan menggunakan PHP Code, konfigurasi ini
+| biasanya digunakan ketika memang dibutuhkan tidak terlalu sering berubah, 
+| dan biasanya pengaturannya hampir sama untuk tiap lokasi dijalankan aplikasi
+| Namun saat menggunakan fitur Laravel Configuration, kita juga tetap bisa mengakses Environment Variable
+|
+*/
 return [
     "author" => [
         // bisa di ketik langsung atau ambil dari environment dan apabila kosong ambil string selanjutnya

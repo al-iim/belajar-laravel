@@ -1,3 +1,8 @@
+Saat kita membuat project Laravel, kita direkomendasikan untuk menggunakan Git sebagai source code management nya
+Kita juga bisa melihat ada file seperti .gitignore yang otomatis dibuat di project Laravel, untuk memberi tahu, bagian mana yang tidak perlu di commit ke dalam Git repository
+Jika teman-teman belum terbiasa dengan Git, saya sarankan mengikuti kelas Git saya sudah saya buat
+https://kelas.programmerzamannow.com/p/git-untuk-pemula-sampai-mahir 
+
 --- awal perlakuan ---
 git init (inisiasi awal pengaktifan git)
 git add . (memasukan semua folder dan file di project)
@@ -26,5 +31,18 @@ git push -u origin master (masukan di cabang utama)
     -buat cache config agar cepat aplikasinya
     -php artisan config:cahce (otomatis cache nya akan di merge jadi satu, lokasinya di bootstrap->cache->config.php)
     -php artisan config:clear (untuk menghapus cache)
-4. Commit 4 ~ (Dependency Injection)
+4. Commit 4 ~ Selasa, 17-05-2022(Dependency Injection)
     -https://en.wikipedia.org/wiki/Dependency_injection
+5. Coomit 5 ~ Kamis, 19-05-2022 Selasa, 17-05-2022(Service Container)
+    -https://laravel.com/api/9.x/Illuminate/Foundation/Application.html 
+    -bind
+    -singleton
+    -instance
+
+/*
+|--------------------------------------------------------------------------
+| Latihan 
+|--------------------------------------------------------------------------
+|
+|
+*/
