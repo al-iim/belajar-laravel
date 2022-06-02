@@ -33,11 +33,17 @@ git push -u origin master (masukan di cabang utama)
     -php artisan config:clear (untuk menghapus cache)
 4. Commit 4 ~ Selasa, 17-05-2022(Dependency Injection)
     -https://en.wikipedia.org/wiki/Dependency_injection
-5. Coomit 5 ~ Kamis, 19-05-2022 Selasa, 17-05-2022(Service Container)
+5. Coomit 5 ~ Jumat, 20-05-2022 Selasa, 17-05-2022(Service Container)
     -https://laravel.com/api/9.x/Illuminate/Foundation/Application.html 
     -bind
     -singleton
     -instance
+6. Coomit 6 ~ Kamis, 02-03-2022 (Route)
+    - Routing
+    - View
+    - Static File
+    - Route Parameter
+    - Named Route
 
 /*
 |--------------------------------------------------------------------------

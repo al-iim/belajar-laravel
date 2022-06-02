@@ -1,0 +1,9 @@
+------------------------------------------------------------------------------------
+1. Buat cache config
+-php artisan config:cahce (otomatis cache nya akan di merge jadi satu, lokasinya di bootstrap->cache->config.php)
+-php artisan config:clear (untuk menghapus cache)
+------------------------------------------------------------------------------------
+2. Buat cache view nya
+-php artisan view:cache (dicompile di awal)
+-php artisan view:clear (untuk menghapus cache)
+------------------------------------------------------------------------------------
