@@ -87,6 +87,12 @@ class FooBarServiceProvider extends ServiceProvider implements DeferrableProvide
 | property singletons untuk membuat binding singleton
 |
 */
+
+/*
+| di bawah ini mengartikan bahwa apabila ada yang memanggil HelloService maka akan kita kembalikan fungsi dar
+| HelloServiceIndonesia
+| HelloService -> jadi HelloServiceIndonesia
+*/
     public array $singletons = [
         HelloService::class => HelloServiceIndonesia::class
     ];

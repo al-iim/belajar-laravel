@@ -48,8 +48,8 @@ class RoutingTest extends TestCase
         ->assertSeeText('Conflict im');
     }
     public function testNamedRoute(){
-        // $this->get('/produk/1')
-        // ->assertSeeText('Link http://belajar-laravel.test/product/1');
+        $this->get('/produk/1')
+        ->assertSeeText('Link http://belajar-laravel.test/product/1');
         $this->get('/produk-redirek/1')
         ->assertRedirect('/product/1');
 

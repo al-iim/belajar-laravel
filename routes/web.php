@@ -160,3 +160,187 @@ Route::get('/conflict/{name}', function($name){
 | cukup gunakan function name().
 |
 */
+/*
+|--------------------------------------------------------------------------
+| Belajar Controller 
+|--------------------------------------------------------------------------
+| Setelah kita bikin controller dengan artisan, lalu kita tambahkan logic
+| kita tambahkan route selanjutnya
+*/
+Route::get('/controller/hello/request', [\App\Http\Controllers\HelloController::class, 'request']);
+Route::get('/controller/hello/{name}', [\App\Http\Controllers\HelloController::class, 'hello']);
+/*
+|--------------------------------------------------------------------------
+| Request Input 
+|--------------------------------------------------------------------------
+| Saat membuat aplikasi web, kita tahu bahwa dalam HTTP Request kita bisa mengirim data, baik itu melalui query parameter, 
+| atau melalui body (misal dalam bentuk form). Biasanya kita menggunakan $_GET atau $_POST atau $_FILES, namun di Laravel, 
+| kita bisa menggunakan object Request untuk mendapatkan input yang dikirim melalui HTTP Request
+|
+*/
+/*
+|--------------------------------------------------------------------------
+| Mengambil Input 
+|--------------------------------------------------------------------------
+| Untuk mengambil input yang dikirim oleh user, tidak peduli apapun HTTP Method yang digunakan, dan dari mana asalnya, entah 
+| dari body atau query parameter. Untuk mengambil input user, kita bisa gunakan method input(key, default) pada Request, 
+| dimana jika key nya tidak ada, maka akan mengembalikan default value di parameter.
+|
+*/
+Route::get('/input/hello', [\App\Http\Controllers\InputController::class, 'hello']);
+Route::post('/input/hello', [\App\Http\Controllers\InputController::class, 'hello']);
+/*
+|--------------------------------------------------------------------------
+| Nested Input 
+|--------------------------------------------------------------------------
+| Salah satu fitur yang powerful di Laravel adalah, kita bisa mengambil input nested hanya dengan menggunakan titik
+| Misal jika kita menggunakan $requet->input(‘name.first’), maka artinya itu mengambil key first di dalam name, 
+| Ini cocok ketika kita kirim request dalam bentuk form atau json.
+|
+*/
+Route::get('/input/hello/nested', [\App\Http\Controllers\InputController::class, 'helloFirst']);
+Route::post('/input/hello/nested', [\App\Http\Controllers\InputController::class, 'helloFirst']);
+/*
+| untuk mengetes kodingan ini, kita harus mematikan fitur keamanan laravel : CSRF
+| App/Http/Middleware/Kernel.php (non aktifkan line 37 : \App\Http\Middleware\VerifyCsrfToken::class,)
+*/
+/*
+|--------------------------------------------------------------------------
+| Mengambil Semua Input 
+|--------------------------------------------------------------------------
+| Untuk mengambil semua input yang terdapat di HTTP Request, baik itu dari query param ataupun body, kita bisa menggunakan 
+| method input() tanpa parameter milik Request. Return value dari method input() ini adalah array
+|
+*/
+Route::post('/input/hello/input', [\App\Http\Controllers\InputController::class, 'helloInput']);
+/*
+|--------------------------------------------------------------------------
+| Mengambil Array Input (tertentu) 
+|--------------------------------------------------------------------------
+| Laravel juga memiliki kemampuan untuk mengambil value dari input berupa array
+| Misal kita bisa gunakan $request->input(‘products.*.name’), artinya kita mengambil semua name yang ada di array products
+|
+*/
+Route::post('/input/hello/array', [\App\Http\Controllers\InputController::class, 'arrayInput']);
+/*
+|--------------------------------------------------------------------------
+| Input Query String 
+|--------------------------------------------------------------------------
+| Method input() digunakan untuk mengambil data di semua input, baik itu query param ataupun body
+| Jika misal kita hanya butuh mengambil data di query param, kita bisa menggunakan method $request->query(key)
+| Atau jika semua query dalam bentuk array, kita bisa gunakan $request->query() tanpa parameter key
+|
+*/
+/*
+|--------------------------------------------------------------------------
+| Dynamic Properties 
+|--------------------------------------------------------------------------
+| Laravel juga mendukung Dynamic Properties yang secara otomatis akan mengambil key dari input Request
+| Misal ketika kita menggunakan $request->first_name, jika dalam object Request tidak ada property dengan nama $first_name, 
+| maka secara otomatis akan mengambil input dengan key first_name
+|
+*/
+/*
+|--------------------------------------------------------------------------
+| Input Type 
+|--------------------------------------------------------------------------
+| Class Request di Laravel memiliki beberapa helper method yang digunakan untuk melakukan konversi input secara otomatis
+| Ini bisa digunakan untuk mempermudah kita ketika ingin otomatis melakukan konversi input data ke tipe data yang kita inginkan
+|--------------------------------------------------------------------------
+| Boolean
+| Untuk melakukan konversi tipe data input secara otomatis ke boolean, kita bisa gunakan method boolean(key, default) pada class Request
+|--------------------------------------------------------------------------
+| Date
+| Untuk melakukan konversi tipe data ke Date secara otomatis, kita bisa gunakan method date(key, pattern, timezone) pada class Request
+| Laravel menggunakan library Carbon untuk memanipulasi tipe data Date dan Time
+| https://github.com/briannesbitt/Carbon 
+|
+*/
+Route::post('/input/type', [\App\Http\Controllers\InputController::class, 'inputType']);
+/*
+|--------------------------------------------------------------------------
+| Filter Request Input 
+|--------------------------------------------------------------------------
+| Kadang pada saat kita menerima input data dari user, kita ingin secara mudah menerima semua key input, lalu menyimpannya ke database 
+| misalnya. Pada kasus seperti ini, kadang sangat berbahaya jika misal user secara tidak sengaja mengirim key yang salah, 
+| lalu kita mencoba melakukan update key yang salah itu ke database. Untungnya Laravel memiliki helper method di class 
+| Request untuk melakukan filter input
+|
+*/
+/*
+|--------------------------------------------------------------------------
+| Method Filter Request Input 
+|--------------------------------------------------------------------------
+| $request->only([key1, key2]) digunakan untuk mengambil hanya input yang kita sebutkan di parameter
+| $request->except([key1, key2]) digunakan untuk mengambil semua input, tapi tidak dengan yang kita sebutkan di parameter
+|
+*/
+Route::post('/input/filter/only', [\App\Http\Controllers\InputController::class, 'filterOnly']);
+Route::post('/input/filter/except', [\App\Http\Controllers\InputController::class, 'filterExcept']);
+/*
+|--------------------------------------------------------------------------
+| File Merge 
+|--------------------------------------------------------------------------
+| Kadang-kadang kita ingin menambahkan default input value ketika input tersebut tidak dikirim di request
+| Kita bisa menggunakan method merge(array) untuk menambah input ke request, dan jika ada key yang sama, 
+| otomatis akan diganti. Atau mergeIfMissing(array) untuk menambah input ke request, dan jika input dengan 
+| key yang sama sudah ada, maka akan dibatalkan.
+|
+*/
+Route::post('/input/filter/merge', [\App\Http\Controllers\InputController::class, 'filterMerge']);
+/*
+|--------------------------------------------------------------------------
+| File Upload 
+|--------------------------------------------------------------------------
+| Laravel juga sudah menyediakan method file(key) di Request untuk mengambil request file upload
+| Tipe data File Upload direpresentasikan dalam class Illuminate\Http\UploadedFile di Laravel
+| https://laravel.com/api/9.x/Illuminate/Http/UploadedFile.html 
+| File Upload di Laravel terintegrasi dengan baik dengan File Storage
+|
+*/
+/*
+| untuk mengupload lewat postman, harus di jalankan denga artisan serve
+| di postman isi link sesuai alamat serve nya lalu pilih body dan pilih form-data
+| lalu ganti text mennjadi file
+|
+| untuk akses langsung di web kita ketik http://127.0.0.1:8000/storage/pictures/Screenshot%202022-05-10%20122153.png
+*/
+Route::post('/file/upload', [\App\Http\Controllers\FileController::class, 'upload']);
+/*
+|--------------------------------------------------------------------------
+| Response 
+|--------------------------------------------------------------------------
+| Sebelumnya kita sudah tahu di Route dan Controller, kita bisa mengembalikan data berupa string dan view
+| Laravel memiliki class Illuminate\Http\Response, yang bisa digunakan untuk representasi dari HTTP Response
+| Dengan class Response ini, kita bisa mengubah HTTP Response seperti Body, Header, Cookie, dan lain-lain
+| Untuk membuat object response, kita bisa menggunakan function helper response(content, status, headers)
+|
+| jangan lupan | use Illuminate\Http\Response;
+|
+*/
+Route::get('response/hello', [\App\Http\Controllers\ResponseController::class, 'response']);
+/*
+|--------------------------------------------------------------------------
+| HTTP Response Header 
+|--------------------------------------------------------------------------
+| Saat kita membuat Response, kita bisa ubah status dan juga response header
+| Kita bisa menggunakan function response(content, status, headers)
+| Atau bisa menggunakan method withHeaders(arrayHeaders) dan header(key, value)
+|
+*/
+Route::get('/response/header', [\App\Http\Controllers\ResponseController::class, 'header']);
+/*
+|--------------------------------------------------------------------------
+| Response Type 
+|--------------------------------------------------------------------------
+| Sebelumnya kita sudah melakukan response JSON secara manual, sebenarnya Response sudah memiliki banyak sekali helper method 
+| untuk beberapa jenis response type. Untuk menampilkan view, kita bisa menggunakan method view(name, data, status, headers)
+| Untuk menampilkan JSON, kita bisa menggunakan method json(array, status, headers)
+| Untuk menampilkan file, kita bisa menggunakan file(pathToFile, headers)
+| Untuk menampilkan file download, kita bisa menggunakan method download(pathToFile, name, headers)
+|
+*/
+Route::get('/response/type/view', [\App\Http\Controllers\ResponseController::class, 'ResponView']);
+Route::get('/response/type/json', [\App\Http\Controllers\ResponseController::class, 'ResponJson']);
+Route::get('/response/type/file', [\App\Http\Controllers\ResponseController::class, 'ResponFile']);
+Route::get('/response/type/download', [\App\Http\Controllers\ResponseController::class, 'responDownload']);
