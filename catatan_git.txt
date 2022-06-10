@@ -20,6 +20,10 @@ git push -u origin master (masukan di cabang utama)
 - instal node
 - instal npm
 - instal composer dan lakukan composer update di folder projeknya
+- instal plugin laravel (laravel artisan, tekan ctrl + p, lalu ketik >artisan. plih seting tiap menunya. contoh dibawah.
+>ctrl + r + l = php artisan route list
+>ctrl + m + c = php artisan make:controller
+>ctrl + m + t = php artisan make:test
 1. Commit 1 ~ Rabu, 11-05-2022,14:48 (Pertama commit, memasukan semua folder awal) php spark serve
 2. Commit 2 ~ Jumat, 13-05-2022,09.35 (unit testing, pembuatannya dan cara menjalankannya)
     -php artisan make:test ContohTest (membuat file test di folder tests->Feature->ContohTest.php)
@@ -49,10 +53,10 @@ git push -u origin master (masukan di cabang utama)
     - Static File
     - Route Parameter
     - Named Route
-6. Coomit 7 ~ , 09-06-2022 (Controller sampai ke enkripsi)
+6. Coomit 7 ~ Kamis, 09-06-2022 (Controller sampai ke enkripsi)
     - php artisan make:controller HelloController
     - php artisan php artisan key:generate
-
+7. Coomit 8 ~ Jumat, 10-06-2022 (Respone dan redirect)
 /*
 |--------------------------------------------------------------------------
 | Latihan 

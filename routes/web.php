@@ -344,3 +344,92 @@ Route::get('/response/type/view', [\App\Http\Controllers\ResponseController::cla
 Route::get('/response/type/json', [\App\Http\Controllers\ResponseController::class, 'ResponJson']);
 Route::get('/response/type/file', [\App\Http\Controllers\ResponseController::class, 'ResponFile']);
 Route::get('/response/type/download', [\App\Http\Controllers\ResponseController::class, 'responDownload']);
+/*
+|--------------------------------------------------------------------------
+| Cookie 
+|--------------------------------------------------------------------------
+| Saat kita membuat HTTP Response, kadang kita perlu membuat cookie. 
+| Cookie adalah data yang otomatis dikirim ketika kita melakukan HTTP Request juga.
+| Jadi kadang Cookie banyak digunakan untuk melakukan management session di aplikasi berbasis web.
+|
+*/
+/*
+|--------------------------------------------------------------------------
+| Secure Cookie 
+|--------------------------------------------------------------------------
+| Secara default, cookie yang dibuat di Laravel akan selalu di enkripsi, dan ketika kita membaca cookie, secara otomatis akan di dekrip 
+| Semua hal itu dilakukan otomatis oleh class App\Http\Middleware\EncryptCookies
+| Jika misal kita tidak ingin melakukan enkripsi pada sebuah cookie, kita bisa mengubah property EncryptCookies yang bernama $except
+|
+*/
+/*
+|--------------------------------------------------------------------------
+| Membuat Cookie 
+|--------------------------------------------------------------------------
+| Untuk membuat cookie, kita bisa gunakan method cookie(name, value, timeou, path, domain, secure, httpOnly) di object Response
+|
+*/
+Route::get('/cookie/set', [\App\Http\Controllers\CookieController::class, 'createCookie']);
+/*
+|--------------------------------------------------------------------------
+| Menerima Cookie 
+|--------------------------------------------------------------------------
+| Setelah membuat cookie di Response, secara otomatis Cookie akan disimpan di Browser sampai timeout atau expired
+| Browser akan secara otomatis mengirim cookie tersebut ke domain dan path yang sudah ditentukan ketika kita membuat cookie
+| Oleh karena itu, kita bisa menangkap data cookie tersebut di Response dengan method cookie(name, default) 
+| Atau jika ingin mengambil semua cookies dalam array, kita bisa gunakan $request->cookies->all()
+| 
+*/
+Route::get('/cookie/get', [\App\Http\Controllers\CookieController::class, 'getCookie']);
+/*
+|--------------------------------------------------------------------------
+| Clear Cookie 
+|--------------------------------------------------------------------------
+| Tidak ada cara untuk menghapus cookie
+| Namun jika kita ingin menghapus cookie, kita bisa membuat cookie dengan nama yang sama dengan value kosong, 
+| dan waktu expired secepatnya. Di Laravel, hal ini bisa kita lakukan dengan menggunakan method withoutCookie(name)
+|
+*/
+Route::get('/cookie/clear', [\App\Http\Controllers\CookieController::class, 'clearCookie']);
+/*
+|--------------------------------------------------------------------------
+| Redirect 
+|--------------------------------------------------------------------------
+| Sebelumnya kita sudah bahas tentang redirect di materi Route, sekarang kita bahas lebih detail tentang redirect
+| Redirect itu sendiri di Laravel direpresentasikan dalam response Illuminate\Http\RedirectResponse
+| Untuk membuat object redirect, kita bisa menggunakan helper function redirect(to)
+|
+*/
+Route::get('redirect/from', [\App\Http\Controllers\RedirectController::class, 'redirectFrom']);
+Route::get('redirect/to', [\App\Http\Controllers\RedirectController::class, 'redirectTo']);
+/*
+|--------------------------------------------------------------------------
+| Redirect to Named Routes 
+|--------------------------------------------------------------------------
+| Sebelumnya kita sudah tahu bahwa kita bisa menambahkan name di routes
+| Laravel juga bisa melakukan redirect ke routes berdasarkan namanya, salah satu keuntungannya adalah 
+| kita bisa menambahkan parameter tanpa harus manual membuat path nya
+| Kita bisa menggunakan method route(name, params) di RedirectResponse
+|
+*/
+Route::get('redirect/nama', [App\Http\Controllers\RedirectController::class, 'redirectName']);
+Route::get('redirect/nama/{name}', [App\Http\Controllers\RedirectController::class, 'redirectHello'])
+->name('redirect-hello');
+/*
+|--------------------------------------------------------------------------
+| Redirect to Controller Action 
+|--------------------------------------------------------------------------
+| Selain menggunakan Named Routes, kita juga bisa melakukan redirect ke Controller Action
+| Secara otomatis nanti Laravel akan mencari path yang sesuai dengan Controller Action tersebut
+| Kita bisa menggunakan method action(controller, params) di RedirectResponse
+|
+*/
+Route::get('redirect/action', [App\Http\Controllers\RedirectController::class, 'redirectAction']);
+/*
+|--------------------------------------------------------------------------
+| Redirect to External Domain 
+|--------------------------------------------------------------------------
+| Secara default, redirect hanya dilakukan ke domain yang sama dengan lokasi domain aplikasi web Laravel nya
+| Jika kita ingin melakukan redirect ke domain lain, kita bisa menggunakan method away(url) di RedirectResponse
+|
+*/
