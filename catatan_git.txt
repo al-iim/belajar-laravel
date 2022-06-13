@@ -24,6 +24,7 @@ git push -u origin master (masukan di cabang utama)
 >ctrl + r + l = php artisan route list
 >ctrl + m + c = php artisan make:controller
 >ctrl + m + t = php artisan make:test
+>ctrl + m + w = php artisan make:middleware
 1. Commit 1 ~ Rabu, 11-05-2022,14:48 (Pertama commit, memasukan semua folder awal) php spark serve
 2. Commit 2 ~ Jumat, 13-05-2022,09.35 (unit testing, pembuatannya dan cara menjalankannya)
     -php artisan make:test ContohTest (membuat file test di folder tests->Feature->ContohTest.php)
@@ -57,6 +58,7 @@ git push -u origin master (masukan di cabang utama)
     - php artisan make:controller HelloController
     - php artisan php artisan key:generate
 7. Coomit 8 ~ Jumat, 10-06-2022 (Respone dan redirect)
+8. Commit 9 ~ Senin, 13-06-2022 (Redirect dan middleware)
 /*
 |--------------------------------------------------------------------------
 | Latihan 

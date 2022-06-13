@@ -35,6 +35,8 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+
+            // kita bisa tambahkan group middleware kita di sini
         });
     }
 

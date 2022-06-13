@@ -23,4 +23,9 @@ class RedirectTest extends TestCase
         $this->get('redirect/action')
         ->assertRedirect('/redirect/nama/imron');
     }
+    public function testRedirectAway()
+    {
+        $this->get('redirect/sap')
+        ->assertRedirect('https://sap.um.ac.id/a_surat_gaji/');
+    }
 }

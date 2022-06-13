@@ -305,7 +305,7 @@ Route::post('/input/filter/merge', [\App\Http\Controllers\InputController::class
 |
 | untuk akses langsung di web kita ketik http://127.0.0.1:8000/storage/pictures/Screenshot%202022-05-10%20122153.png
 */
-Route::post('/file/upload', [\App\Http\Controllers\FileController::class, 'upload']);
+// Route::post('/file/upload', [\App\Http\Controllers\FileController::class, 'upload']);
 /*
 |--------------------------------------------------------------------------
 | Response 
@@ -433,3 +433,44 @@ Route::get('redirect/action', [App\Http\Controllers\RedirectController::class, '
 | Jika kita ingin melakukan redirect ke domain lain, kita bisa menggunakan method away(url) di RedirectResponse
 |
 */
+Route::get('/redirect/sap', [App\Http\Controllers\RedirectController::class, 'redirectAway']);
+/*
+|--------------------------------------------------------------------------
+| Middleware 
+|--------------------------------------------------------------------------
+*/
+Route::get('/middleware/api', function(){
+    return "OK";
+})->middleware('contoh');
+/*
+|--------------------------------------------------------------------------
+| Middleware Group
+|--------------------------------------------------------------------------
+| Kadang kita ingin menggabungkan beberapa middleware dalam satu group, sehingga ketika membutuhkannya, kita cukup sebutkan nama 
+| group nya saja. Laravel mendukung hal tersebut, kita bisa buat nama group dan middleware-middleware yang tersedia di group 
+| tersebut di property $middlewareGroups di kelas Kernel.
+| Untuk menggunakan middleware group tersebut, kita cukup sebut nama group nya saja
+
+*/
+Route::get('/middleware/group', function(){
+    return "GROUP";
+})->middleware(['pzn']);
+/*
+|--------------------------------------------------------------------------
+| Middleware Parameter
+|--------------------------------------------------------------------------
+*/
+Route::get('/middleware/api-parameter', function(){
+    return "OK";
+})->middleware(['contoh:PZN,401']);
+/*
+|--------------------------------------------------------------------------
+| Middleware Exclude (eksekusi tanpa verify middleware)
+|--------------------------------------------------------------------------
+| Sebelumnya kita tahu bahwa di Laravel, terdapat group middleware bernama web dan api, disana sudah banyak sekali middleware yang 
+| sudah secara default disediakan oleh Laravel. Kadang kita ingin meng-exclude atau membuat middleware di dalam sebuah route, 
+| pada kasus seperti ini kita bisa lakukan ketika menambahkan route
+| Kita bisa gunakan method withoutMiddleware() pada Route
+*/
+Route::post('/file/upload', [\App\Http\Controllers\FileController::class, 'upload'])
+    ->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);

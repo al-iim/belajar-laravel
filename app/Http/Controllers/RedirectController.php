@@ -27,4 +27,8 @@ class RedirectController extends Controller
     {
         return redirect()->action([RedirectController::class, 'redirectHello'], ['name' => 'imron']);
     }
+    public function redirectAway(): RedirectResponse
+    {
+        return redirect()->away('https://sap.um.ac.id/a_surat_gaji/');
+    }
 }

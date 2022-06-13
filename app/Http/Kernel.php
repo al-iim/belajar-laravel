@@ -14,6 +14,9 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
     protected $middleware = [
+        // masukan middleware kita ke sini kalaw pingin di pakai di semua controller / global
+        
+        // akhir middleware kita
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
         \Illuminate\Http\Middleware\HandleCors::class,
@@ -29,12 +32,19 @@ class Kernel extends HttpKernel
      * @var array<string, array<int, class-string|string>>
      */
     protected $middlewareGroups = [
+        // kita tambahkan Group Middleware apabila kita memiliki beberapa middleware yang fungsinya sama
+        'pzn' => 
+        [
+            'contoh:PZN,401',
+            \App\Http\Middleware\ContohMiddleware::class,
+        ],
+        // akhir middleware
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            // \App\Http\Middleware\VerifyCsrfToken::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
@@ -53,6 +63,9 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        // masukan middleware kita ke sini kalaw pingin di pakai di controller khusus / tertentu
+        'contoh' => \App\Http\Middleware\ContohMiddleware::class,
+        // akhir middleware kita
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
